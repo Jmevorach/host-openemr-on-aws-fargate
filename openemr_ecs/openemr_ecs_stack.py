@@ -214,14 +214,36 @@ class OpenemrEcsStack(Stack):
         )
 
     def _create_password(self):
+
+        # Choose a random length between 16 and 32 (inclusive)
+        pw_length = random.randint(16, 32)
+
+        # Keep only these very safe special characters available for passwords.
+        safe_specials = "@%+=_."
+
+        # Exclude every other punctuation character (shell/JSON troublemakers).
+        # string.punctuation is: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+        exclude_chars = ''.join(ch for ch in string.punctuation if ch not in safe_specials)
+
         self.password = secretsmanager.Secret(
             self,
             "Password",
             generate_secret_string=secretsmanager.SecretStringGenerator(
+                secret_string_template='{"username":"admin"}',
+                generate_string_key="password",
+
+                # Randomized length between 16 and 24
+                password_length=pw_length,
+
+                # No spaces as these can cause errors
                 include_space=False,
-                secret_string_template='{"username": "admin"}',
-                generate_string_key="password"
-            )
+
+                # Require at least one of each type (lower/upper/digit/special)
+                require_each_included_type=True,
+
+                # Exclude shell/JSON-problematic punctuation; keep a safe allowlist
+                exclude_characters=exclude_chars,
+            ),
         )
 
     def _create_security_groups(self):
