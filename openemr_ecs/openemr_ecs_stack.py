@@ -391,14 +391,14 @@ class OpenemrEcsStack(Stack):
                             scope=self,
                             id="portal-onsite-two-address",
                             parameter_name="portal_onsite_two_address",
-                            string_value='https://' + self.alb.dns_name + '/portal/'
+                            string_value='https://' + self.alb.load_balancer_dns_name + '/portal/'
                         )
                     else:
                         self.portal_onsite_two_address = ssm.StringParameter(
                             scope=self,
                             id="portal-onsite-two-address",
                             parameter_name="portal_onsite_two_address",
-                            string_value='https://' + self.alb.dns_name + '/portal/'
+                            string_value='https://' + self.alb.load_balancer_dns_name + '/portal/'
                         )
 
             # Other parameters
