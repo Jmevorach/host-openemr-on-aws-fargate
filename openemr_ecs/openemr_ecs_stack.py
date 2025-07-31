@@ -215,9 +215,6 @@ class OpenemrEcsStack(Stack):
 
     def _create_password(self):
 
-        # Choose a random length between 16 and 32 (inclusive)
-        pw_length = random.randint(16, 32)
-
         # Keep only these very safe special characters available for passwords.
         safe_specials = "@%+=_."
 
@@ -232,8 +229,8 @@ class OpenemrEcsStack(Stack):
                 secret_string_template='{"username":"admin"}',
                 generate_string_key="password",
 
-                # Randomized length between 16 and 24
-                password_length=pw_length,
+                # Password is 32 characters long
+                password_length=32,
 
                 # No spaces as these can cause errors
                 include_space=False,
