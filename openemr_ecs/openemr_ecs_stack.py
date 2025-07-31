@@ -217,7 +217,7 @@ class OpenemrEcsStack(Stack):
     def _create_password(self):
 
         # Keep only these very safe special characters available for passwords.
-        safe_specials = "@+="
+        safe_specials = "!()<>^{}~"
 
         # Exclude every other punctuation character (shell/JSON troublemakers and others that could cause bugs).
         # string.punctuation is: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
@@ -230,8 +230,8 @@ class OpenemrEcsStack(Stack):
                 secret_string_template='{"username":"admin"}',
                 generate_string_key="password",
 
-                # Password is 32 characters long
-                password_length=32,
+                # Password is 16 characters long
+                password_length=16,
 
                 # No spaces as these can cause errors
                 include_space=False,
