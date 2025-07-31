@@ -36,6 +36,7 @@ from aws_cdk import (
 )
 from constructs import Construct
 import hashlib
+import string
 
 class OpenemrEcsStack(Stack):
 
