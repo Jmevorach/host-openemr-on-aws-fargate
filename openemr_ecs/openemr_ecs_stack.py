@@ -216,9 +216,9 @@ class OpenemrEcsStack(Stack):
     def _create_password(self):
 
         # Keep only these very safe special characters available for passwords.
-        safe_specials = "@%+=_."
+        safe_specials = "@+="
 
-        # Exclude every other punctuation character (shell/JSON troublemakers).
+        # Exclude every other punctuation character (shell/JSON troublemakers and others that could cause bugs).
         # string.punctuation is: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
         exclude_chars = ''.join(ch for ch in string.punctuation if ch not in safe_specials)
 
