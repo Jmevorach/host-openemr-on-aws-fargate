@@ -985,7 +985,7 @@ class OpenemrEcsStack(Stack):
             # Create cluster
             self.ecs_cluster = ecs.Cluster(self, "ecs-cluster",
                                            vpc=self.vpc,
-                                           container_insights=True,
+                                           container_insights_v2=ecs.ContainerInsights.ENHANCED,
                                            enable_fargate_capacity_providers=True,
                                            execute_command_configuration=ecs.ExecuteCommandConfiguration(
                                                kms_key=self.kms_key,
