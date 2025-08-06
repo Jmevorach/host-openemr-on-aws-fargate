@@ -50,7 +50,7 @@ class OpenemrEcsStack(Stack):
         self.container_port = 443
         self.number_of_days_to_regenerate_ssl_materials = 2
         self.emr_serverless_release_label = "emr-7.9.0"
-        self.aurora_mysql_engine_version = rds.AuroraMysqlEngineVersion.VER_3_09_0
+        self.aurora_mysql_engine_version = rds.AuroraMysqlEngineVersion.VER_3_10_0
         self.openemr_version = "7.0.3"
         self.lambda_python_runtime = _lambda.Runtime.PYTHON_3_13
 
